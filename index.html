@@ -1,0 +1,44 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Connect lists</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="logic.css" />
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container" id="menu-container">
+			<a class="brand" href="/">Teleroute</a>
+		</div>
+	</div>
+</div>
+<div id="content">
+	<div class="container">
+		<a href="google.com">http://orangesoda-client.com/params?yo</a>
+		<div class="clear">
+			<ul id="sortable1" class="connectNounToList connectOperatorToList">
+			  <li class="ui-state-dotted"></li>
+			</ul>
+
+			<ul id="sortable3" class="connectNounToList">
+			  <li class="ui-state operator and"><span>AND</span></li>
+			  <li class="ui-state operator or"><span>OR</span></li>
+			</ul>
+			 
+			<ul id="sortable2" class="connectOperatorToList">
+			  <li class="ui-state noun">Location</li>
+			  <li class="ui-state noun">Category</li>
+			  <li class="ui-state noun">Subcategory</li>
+			</ul>
+		</div>
+	</div>
+</div>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>	
+  <script type="text/javascript" src="logic.js"></script>
+</body>
+</html>
