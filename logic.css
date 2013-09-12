@@ -52,26 +52,28 @@ input {
 	margin: 0 auto;
 }
 
-#sortable1,
-#sortable2,
-#sortable3 {
+#statement1,
+#statement2,
+#parameters,
+#operators {
 	list-style-type: none;
 	margin: 0 10px 0 0;
 	padding: 0 0 2.5em;
 }
 
-#sortable1 {
+#statement-container {
 	float: left;
 }
 
-#sortable2,
-#sortable3 {
+#parameters,
+#operators {
 	float: right;
 }
 
-#sortable2 li,
-#sortable1 li,
-#sortable3 li,
+#parameters li,
+#statement1 li,
+#statement2 li,
+#operators li,
 .operator {
   margin: 0 5px 5px 5px;
   padding: 5px;
@@ -81,16 +83,19 @@ input {
   cursor: hand;
 }
 
-#sortable1 li {
+#statement1 li,
+#statement2 li {
   float: left;
 }
 
-#sortable1 li:not(.operator) {
+#statement1 li:not(.operator),
+#statement2 li:not(.operator) {
 	margin: 10px;
 }
 
-#sortable1 li:not(.operator),
-#sortable2 li:not(.operator) {
+#statement1 li:not(.operator),
+#statement2 li:not(.operator),
+#parameters li:not(.operator) {
   min-width: 120px;
   color: #fff;
   padding: 10px;
@@ -99,8 +104,9 @@ input {
   border-radius: 5px;
 }
 
-#sortable1 li:not(.ui-state-dotted):not(.operator),
-#sortable2 li:not(.ui-state-dotted):not(.operator) {
+#statement1 li:not(.ui-state-dotted):not(.operator),
+#statement2 li:not(.ui-state-dotted):not(.operator),
+#parameters li:not(.ui-state-dotted):not(.operator) {
   background: #80d487;
 }
 

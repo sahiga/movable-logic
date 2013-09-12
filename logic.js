@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	var elementClasses = [];
     var classesInList = [];
@@ -8,26 +9,24 @@ $(document).ready(function() {
     var newIndex;
     var originalHTML;
 
-  	function cancelSort(event, ui) {
-	 	$(".ui-state-dotted").remove();
+  	function sortRules(event, ui) {
+	 	originalParent.children('.ui-state-dotted').remove();
 
-	 	if ($('#sortable2 li').length > 0 || $('#sortable3 li').length > 0) {
-	  		$("#sortable1").append('<li class="ui-state-dotted"></li>');
+	 	if (originalParent.children('li').length < 5 && (originalParent.attr('id') === 'statement1' || originalParent.attr('id') === 'statement2')) {
+	  		originalParent.append('<li class="ui-state-dotted"></li>');
 	 	}
 
 		if ((ui.item.attr('class') === ui.item.prev().attr('class')) ||
 			(ui.item.attr('class') === ui.item.next().attr('class')) ||
-			(ui.item.hasClass('operator') && (!ui.item.prev().hasClass('noun') || ui.item.next().hasClass('operator')))) {
+			(ui.item.hasClass('operator') && (!ui.item.prev().hasClass('noun') || ui.item.next().hasClass('operator') || ui.item.next().attr('class') === undefined))) {
 
-
-			if (originalParent.attr('id') === 'sortable2' || originalParent.attr('id') === 'sortable3') {
-				console.log('cancel')
+			if (originalParent.attr('id') === 'operators' || originalParent.attr('id') === 'parameters') {
 				$(this).sortable('cancel');
 			} else {
 				newIndex = ui.item.index();
 
-				if (Math.abs(originalIndex - newIndex) === 2) {
-			 		ui.item.next().insertAfter($('#sortable1 li').eq(originalIndex));
+				if (Math.abs(originalIndex - newIndex) % 2 === 0) {
+			 		ui.item.next().insertAfter(originalParent.children('li').eq(originalIndex));
 				} else {
 					$(this).sortable('cancel');
 				}
@@ -49,7 +48,10 @@ $(document).ready(function() {
 			} else {
 				ui.item.children('input').attr('placeholder', originalHTML);
 			}
+
+		originalParent.append('<li class="' + ui.item.attr('class') + '">' + originalHTML + '</li>');
 		}
+
   	}
 
   	function locationSearch() {
@@ -65,8 +67,8 @@ $(document).ready(function() {
 
   $(function() {
 
-    $('#sortable1, #sortable2, #sortable3').sortable({
-    	connectWith: '.connectNounToList',
+    $('#statement1, #statement2, #operators, #parameters').sortable({
+    	connectWith: '.connectLists',
     	start: function(event, ui) {
     		originalParent = ui.item.parent();
 	    	originalIndex = ui.item.index();
@@ -76,45 +78,9 @@ $(document).ready(function() {
 				'background': '#fcf8e3',
 				'border': '1px solid #fbeed5',
 				'visibility': 'visible'
-	    	})
-    	},
-    	/*out: function ( event, ui ) {
-    		if ($('#sortable2 li').length > 0) {
-	        	if (ui.item.hasClass('and')) {
-	          		$('#sortable3').append('<li class="ui-state-highlight operator and"><span>AND</span></li>');
-	        	} else if (ui.item.hasClass('or')) {
-	          		$('#sortable3').append('<li class="ui-state-highlight operator or"><span>OR</span></li>');
-	        	}
-    		}
-    	},*/
-
-    	/*receive: function(event, ui) {
-
-	        elementClasses.push(ui.item.attr('class').split(' ')[1]);
-
-	        if (elementClasses.length === 2) {
-	         	currentElement = elementClasses[1];
-	          	prevElement = elementClasses[0];
-
-	          	if (currentElement === prevElement) {
-	            	ui.item.remove();
-	            	if (ui.item.hasClass('noun')) {	
-	              		$('#sortable2').append('<li class="ui-state-highlight noun">' + ui.item.html() + '</li>');
-	            	}
-	          	}
-	        } else if (elementClasses.length > 2) {
-	          	currentElement = elementClasses[elementClasses.length - 1];
-	          	prevElement = elementClasses[elementClasses.length - 2];
-
-	          	if (currentElement === prevElement) {
-	            	ui.item.remove();
-	            	if (ui.item.hasClass('noun')) {
-	              		$('#sortable2').append('<li class="ui-state-highlight noun">' + ui.item.html() + '</li>');
-	            	}
-	          	}
-	        }
-      	},*/
-      	stop: cancelSort
+	    	});
+	    },
+      	stop: sortRules
     }).disableSelection();
   });
 });
