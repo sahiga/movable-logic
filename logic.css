@@ -52,8 +52,8 @@ input {
 	margin: 0 auto;
 }
 
-#statement1,
-#statement2,
+#statement1:not(.delete),
+#statement2:not(.delete),
 #parameters,
 #operators {
 	list-style-type: none;
@@ -61,18 +61,26 @@ input {
 	padding: 0 0 2.5em;
 }
 
-#statement-container {
+main {
 	float: left;
+}
+
+aside {
+  float: right;
+  border-width: 0 0 0 5px;
+  border-color: #ff8f2f;
+  border-style: solid;
+  padding: 0 0 0 20px;
 }
 
 #parameters,
 #operators {
-	float: right;
+	float: left;
 }
 
 #parameters li,
-#statement1 li,
-#statement2 li,
+#statement1 li:not(.delete),
+#statement2 li:not(.delete),
 #operators li,
 .operator {
   margin: 0 5px 5px 5px;
@@ -88,13 +96,13 @@ input {
   float: left;
 }
 
-#statement1 li:not(.operator),
-#statement2 li:not(.operator) {
+#statement1 li:not(.operator):not(.delete),
+#statement2 li:not(.operator):not(.delete) {
 	margin: 10px;
 }
 
-#statement1 li:not(.operator),
-#statement2 li:not(.operator),
+#statement1 li:not(.operator):not(.delete),
+#statement2 li:not(.operator):not(.delete),
 #parameters li:not(.operator) {
   min-width: 120px;
   color: #fff;
@@ -104,9 +112,14 @@ input {
   border-radius: 5px;
 }
 
-#statement1 li:not(.ui-state-dotted):not(.operator),
-#statement2 li:not(.ui-state-dotted):not(.operator),
-#parameters li:not(.ui-state-dotted):not(.operator) {
+#statement1 li:not(.ui-state-dotted):not(.operator):not(.delete),
+#statement2 li:not(.ui-state-dotted):not(.operator):not(.delete) {
+  background: rgb(160, 194, 255);
+}
+
+
+
+#parameters li:not(.ui-state-dotted) {
   background: #80d487;
 }
 
@@ -134,4 +147,22 @@ input {
 
 .operator span {
   line-height: 50px;
+}
+
+.delete {
+  cursor: pointer;
+  cursor: hand;
+  margin: 10px 8px;
+  text-align: center;
+  color: #fff;
+  background: #FFB97C;
+  width: 20px;
+  height: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.delete:hover {
+  background: #ff8f2f;
 }
