@@ -4,6 +4,7 @@ $(document).ready(function() {
     var newIndex;
     var originalHTML;
     var targetParent;
+    var originalText;
 
     function deleteParameter(list) {
     	var deleteButton = list.children('.delete');
@@ -65,7 +66,7 @@ $(document).ready(function() {
 			// Otherwise, if the sort arrangement is allowed, continue with the sort
 			} else {
 				if (ui.item.hasClass('parameter')) {
-					ui.item.html('<input type="text" class="search-input">');
+					ui.item.html('<input type="text" class="search-input" name="search-input" value="">');
 					ui.item.css('padding', '5px');
 				}
 
@@ -76,7 +77,8 @@ $(document).ready(function() {
 					});
 					locationSearch();
 				} else {
-					ui.item.children('input').attr('placeholder', originalHTML);
+					console.log(originalHTML, originalText);
+					ui.item.children('input').attr('placeholder', originalText);
 				}
 
 				originalParent.append('<li class="' + ui.item.attr('class') + '">' + originalHTML + '</li>');
@@ -116,11 +118,12 @@ $(document).ready(function() {
   $(function() {
     $('#statement1, #statement2, #operators, #parameters').sortable({
     	connectWith: '.connectLists',
-    	cancel: '.delete, .ui-state-dotted',
+    	handle: '.handler',
     	start: function(event, ui) {
     		originalParent = ui.item.parent();
 	    	originalIndex = ui.item.index();
 	    	originalHTML = ui.item.html();
+	    	originalText = ui.item.children('span').html();
 
 	    	ui.placeholder.css({		
 				'background': '#fcf8e3',
@@ -129,6 +132,6 @@ $(document).ready(function() {
 	    	});
 	    },
       	stop: sortRules
-    }).disableSelection();
+    });
   });
 });

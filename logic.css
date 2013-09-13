@@ -20,7 +20,7 @@ z-index: 1030;
 box-shadow: 0 1px 10px rgba(0,0,0,0.1);
 }
 
- .brand {
+.brand {
 float: left;
 display: block;
 padding: 10px 20px 10px;
@@ -52,16 +52,15 @@ input {
 	margin: 0 auto;
 }
 
-#statement1:not(.delete),
-#statement2:not(.delete),
-#parameters,
-#operators {
+.fullStatement,
+.piece {
 	list-style-type: none;
-	margin: 0 10px 0 0;
+	margin: 0 10px 20px 0;
 	padding: 0 0 2.5em;
 }
 
-main {
+main,
+.piece {
 	float: left;
 }
 
@@ -73,35 +72,25 @@ aside {
   padding: 0 0 0 20px;
 }
 
-#parameters,
-#operators {
-	float: left;
-}
-
-#parameters li,
-#statement1 li:not(.delete),
-#statement2 li:not(.delete),
-#operators li,
+.parameter,
 .operator {
   margin: 0 5px 5px 5px;
-  padding: 5px;
   font-size: 1.2em;
   text-align: center;
   cursor: pointer;
   cursor: hand;
 }
 
-#statement1 li,
-#statement2 li {
+.fullStatement li {
   float: left;
 }
 
-#statement1 li:not(.operator):not(.delete),
-#statement2 li:not(.operator):not(.delete) {
-	margin: 10px;
+.fullStatement li:not(.delete):not(.operator) {
+  min-width: 120px;
+  padding: 10px;
 }
 
-#statement1 li:not(.operator):not(.delete),
+/*#statement1 li:not(.operator):not(.delete),
 #statement2 li:not(.operator):not(.delete),
 #parameters li:not(.operator) {
   min-width: 120px;
@@ -110,25 +99,23 @@ aside {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-}
+}*/
 
 #statement1 li:not(.ui-state-dotted):not(.operator):not(.delete),
 #statement2 li:not(.ui-state-dotted):not(.operator):not(.delete) {
   background: rgb(160, 194, 255);
 }
 
-
-
-#parameters li:not(.ui-state-dotted) {
+/*#parameters li:not(.ui-state-dotted) {
   background: #80d487;
-}
+}*/
 
 .ui-state-dotted {
 	border: 2px dashed #80d487;
 	height: 16px;
 }
 
-.operator {
+/*.operator {
   width: 50px;
   height: 50px;
   color: #ff8f2f;
@@ -138,15 +125,11 @@ aside {
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
-}
+}*/
 
 .clear {
 	clear: both;
 	margin: 20px 0;
-}
-
-.operator span {
-  line-height: 50px;
 }
 
 .delete {
@@ -165,4 +148,42 @@ aside {
 
 .delete:hover {
   background: #ff8f2f;
+}
+
+.fullStatement li:not(.delete),
+#parameters li,
+#parameters .handler {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#parameters .handler {
+  display: block;
+  margin: 1px;
+  min-width: 120px;
+  color: #fff;
+  padding: 10px;
+  background: #80d487;
+}
+
+#operators li,
+.operator .handler {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+
+.operator .handler {
+  display: block;
+  line-height: 50px;
+  width: 50px;
+  height: 50px;
+  color: #ff8f2f;
+  background: #fff;
+  border: 4px solid #ff8f2f;
+}
+
+.fullStatement .operator .handler {
+  margin: -8px 0;
 }
