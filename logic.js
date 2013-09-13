@@ -66,19 +66,18 @@ $(document).ready(function() {
 			// Otherwise, if the sort arrangement is allowed, continue with the sort
 			} else {
 				if (ui.item.hasClass('parameter')) {
-					ui.item.html('<input type="text" class="search-input" name="search-input" value="">');
+					ui.item.html('<form class="handler"><input type="text" class="search-input" name="search-input" value=""></form>');
 					ui.item.css('padding', '5px');
 				}
 
-				if (originalHTML === 'Location') {
-					ui.item.children('input').attr({
+				if (originalText === 'Location') {
+					ui.item.children('form').children('input').attr({
 						'id': 'locationInput',
 						'placeholder': 'Enter your city'
 					});
 					locationSearch();
 				} else {
-					console.log(originalHTML, originalText);
-					ui.item.children('input').attr('placeholder', originalText);
+					ui.item.children('form').children('input').attr('placeholder', originalText);
 				}
 
 				originalParent.append('<li class="' + ui.item.attr('class') + '">' + originalHTML + '</li>');
